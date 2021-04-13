@@ -15,3 +15,4 @@ graph_t *graph_create(void)
 	graph->vertices = NULL;
 	return (graph);
 }
+
