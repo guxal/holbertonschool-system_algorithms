@@ -1,8 +1,8 @@
 #include "graphs.h"
 
 /**
- * graph_create - Allocates memory for a new graph
- * Return: a new graph, NULL on failure
+ * graph_create - creates a graph
+ * Return: node to graph
  */
 graph_t *graph_create(void)
 {
@@ -15,4 +15,3 @@ graph_t *graph_create(void)
 	graph->vertices = NULL;
 	return (graph);
 }
-
