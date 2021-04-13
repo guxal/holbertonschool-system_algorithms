@@ -1,10 +1,9 @@
-#ifndef _GRAPHS_H
-#define _GRAPHS_H
+#ifndef GRAPHS_H
+#define GRAPHS_H
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 
 /**
  * enum edge_type_e - Enumerates the different types of
@@ -31,9 +30,10 @@ typedef struct vertex_s vertex_t;
  */
 typedef struct edge_s
 {
-	vertex_t    *dest;
+	vertex_t	*dest;
 	struct edge_s   *next;
 } edge_t;
+
 
 /**
  * struct vertex_s - Node in the linked list of vertices in the adjency list
@@ -48,10 +48,10 @@ typedef struct edge_s
  */
 struct vertex_s
 {
-	size_t      index;
-	char        *content;
-	size_t      nb_edges;
-	edge_t      *edges;
+	size_t	index;
+	char	*content;
+	size_t	nb_edges;
+	edge_t	*edges;
 	struct vertex_s *next;
 };
 
@@ -64,12 +64,45 @@ struct vertex_s
  */
 typedef struct graph_s
 {
-	size_t      nb_vertices;
-	vertex_t    *vertices;
+	size_t	nb_vertices;
+	vertex_t	*vertices;
 } graph_t;
 
-void graph_display(const graph_t *graph);
-vertex_t *graph_add_vertex(graph_t *graph, const char *str);
-graph_t *graph_create(void);
+/**
+ * struct Node - node for queue/stack
+ * @vertex: pointer to vertex
+ * @depth: depth of this vertex
+ * @next: pointer of next node in this list
+ */
+typedef struct Node
+{
+	vertex_t *vertex;
+	size_t depth;
+	struct Node *next;
+} node_t;
 
-#endif /* GRAPHS_H */
+/**
+ * struct Queue - queue object
+ * @head: pointer to head node
+ * @tail: pointer to tail node
+ * @size: size of queue
+ */
+typedef struct Queue
+{
+	node_t *head;
+	node_t *tail;
+	size_t size;
+} queue_t;
+
+void graph_display(const graph_t *graph);
+graph_t *graph_create(void);
+vertex_t *graph_add_vertex(graph_t *graph, const char *str);
+int graph_add_edge(graph_t *graph, const char *src, const char *dest,
+	edge_type_t type);
+void graph_delete(graph_t *graph);
+size_t depth_first_traverse(const graph_t *graph,
+	void (*action)(const vertex_t *v, size_t depth));
+size_t breadth_first_traverse(const graph_t *graph,
+	void (*action)(const vertex_t *v, size_t depth));
+
+#endif
