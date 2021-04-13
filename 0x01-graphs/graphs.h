@@ -1,5 +1,5 @@
-#ifndef GRAPHS_H
-#define GRAPHS_H
+#ifndef _GRAPHS_H
+#define _GRAPHS_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -71,4 +71,5 @@ typedef struct graph_s
 void graph_display(const graph_t *graph);
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
 graph_t *graph_create(void);
+
 #endif /* GRAPHS_H */
