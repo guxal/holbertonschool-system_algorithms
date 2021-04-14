@@ -6,6 +6,17 @@
 #include <string.h>
 
 /**
+ * struct queue_s - queue linked list
+ * @node: pointer to edge node
+ * @next: pointer to next queue node
+ */
+typedef struct queue_s
+{
+	struct vertex_s *node;
+	struct queue_s *next;
+} queue_t;
+
+/**
  * enum edge_type_e - Enumerates the different types of
  * connection between two vertices
  *
@@ -81,18 +92,6 @@ typedef struct Node
 	struct Node *next;
 } node_t;
 
-/**
- * struct Queue - queue object
- * @head: pointer to head node
- * @tail: pointer to tail node
- * @size: size of queue
- */
-typedef struct Queue
-{
-	node_t *head;
-	node_t *tail;
-	size_t size;
-} queue_t;
 
 void graph_display(const graph_t *graph);
 graph_t *graph_create(void);
